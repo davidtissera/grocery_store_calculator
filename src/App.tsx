@@ -1,3 +1,5 @@
+import Table from "@core/components/Table";
+
 export default function App() {
-  return <div>Hello World</div>;
+  return <Table columns={[]} rows={[]} />;
 }

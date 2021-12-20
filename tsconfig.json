@@ -2,6 +2,7 @@
     "include": [
         "./src/**/*"
     ],
+    "extends": "./tsconfig.paths.json",
     "compilerOptions": {
         "strict": true,
         "esModuleInterop": true,
@@ -9,6 +10,7 @@
             "dom",
             "es2015"
         ],
+        "baseUrl": "src",
         "jsx": "react-jsx"
     }
 }
