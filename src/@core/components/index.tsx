@@ -1,3 +1,3 @@
-import Table, { ITable } from "./Table";
+import Table, { ITable, IColumn } from "./Table";
 
-export { Table, ITable };
+export { Table, ITable, IColumn };

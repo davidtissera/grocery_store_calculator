@@ -5,6 +5,12 @@
       "@core/components/*": [
         "@core/components/*"
       ],
+      "shared/*": [
+        "shared/*"
+      ],
+      "enums/*": [
+        "enums/*"
+      ],
     }
   },
 }
