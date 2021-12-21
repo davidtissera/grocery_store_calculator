@@ -20,3 +20,20 @@ export const calculateDiscountPrice: (product: IProductQuantity) => number = (
 
   return product.quantity * product?.discount_cost;
 };
+
+export const getProductsTotalPriceAndDiscount = (
+  products: IProductQuantity[]
+) => {
+  const totalWithoutDiscount = products.reduce((prev: number, acum) => {
+    return prev + acum.cost * acum.quantity;
+  }, 0);
+
+  const totalWithDiscount = products.reduce((prev, acum) => {
+    return prev + acum.price;
+  }, 0);
+
+  return {
+    totalWithDiscount,
+    totalWithoutDiscount
+  };
+};
