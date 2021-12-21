@@ -14,22 +14,22 @@ export default function WeekGroceryPricesTable() {
       discount_cost: discountCost
     } = product;
     if (amountOfProductsInDiscount == undefined || discountCost == undefined) {
-      return false;
+      return {
+        ...product,
+        sale_price: "-"
+      };
     }
 
     return {
       ...product,
-      sale_price: `${amountOfProductsInDiscount} for $${
+      sale_price: `${amountOfProductsInDiscount} for $${(
         discountCost * amountOfProductsInDiscount
-      }`
+      ).toFixed(2)}`
     };
   };
 
   const rows = products.map((product) => {
     const salePriceProduct = getSalePriceProduct(product);
-    if (!salePriceProduct) {
-      return product;
-    }
 
     return salePriceProduct;
   });

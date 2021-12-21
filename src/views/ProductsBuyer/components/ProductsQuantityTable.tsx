@@ -17,7 +17,11 @@ export default function ProductsQuantityTable(props: IProductQuantityTable) {
   const columns = [
     { name: "name", header: "Item" },
     { name: "quantity", header: "Quantity" },
-    { name: "price", header: "Price" }
+    {
+      name: "price",
+      header: "Price",
+      Cell: (cellValue: number) => <>{`$${cellValue.toFixed(2)}`}</>
+    }
   ];
 
   const rows = products.map((product) => ({
