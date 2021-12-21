@@ -35,7 +35,7 @@ export default function ProductsQuantityTable(props: IProductQuantityTable) {
   const {
     totalWithDiscount,
     totalWithoutDiscount
-  } = getProductsTotalPriceAndDiscount(rows);
+  } = getProductsTotalPriceAndDiscount(products);
 
   const savedPrice = totalWithoutDiscount - totalWithDiscount;
 
