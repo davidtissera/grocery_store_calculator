@@ -14,5 +14,35 @@ export interface ITable {
 export default function Table(props: ITable) {
   const { columns, rows } = props;
 
-  return <div>Table</div>;
+  if (columns.length === 0 || rows.length === 0) {
+    return null;
+  }
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          {columns.map((column) => {
+            return (
+              <th role="columnheader" key={column.name}>
+                {column.header}
+              </th>
+            );
+          })}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row, idx) => {
+          return (
+            <tr role="row" key={`row-${idx}`}>
+              {columns.map((column) => {
+                const cellValue = row[column.name];
+                return <td key={cellValue}>{cellValue}</td>;
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
 }

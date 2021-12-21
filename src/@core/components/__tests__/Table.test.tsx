@@ -27,7 +27,7 @@ describe("Table", () => {
       };
       const component = getComponent(defaultProps);
 
-      expect(component).toBeNull();
+      expect(component.container).toBeEmptyDOMElement();
     });
   });
 
@@ -35,8 +35,7 @@ describe("Table", () => {
     it("should render all the columns headers according props", () => {
       const columns = [
         { name: "name", header: "Item" },
-        { name: "name", header: "Unit price" },
-        { name: "name", header: "Sale price" }
+        { name: "cost", header: "Unit price" }
       ];
       const rows: IProduct[] = productsMock;
       const defaultProps = {
@@ -49,20 +48,15 @@ describe("Table", () => {
       const unitPriceHeader = component.getByRole("columnheader", {
         name: "Unit price"
       });
-      const salePriceHeader = component.getByRole("columnheader", {
-        name: "Sale price"
-      });
 
       expect(itemHeader).toBeInTheDocument();
       expect(unitPriceHeader).toBeInTheDocument();
-      expect(salePriceHeader).toBeInTheDocument();
     });
 
     it("should render all rows according props", () => {
       const columns = [
         { name: "name", header: "Item" },
-        { name: "name", header: "Unit price" },
-        { name: "name", header: "Sale price" }
+        { name: "cost", header: "Unit price" }
       ];
       const rows: IProduct[] = productsMock;
       const defaultProps = {
