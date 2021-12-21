@@ -1,11 +1,12 @@
-import WeekGroceryPricesTable from "WeekGroceryPricesTable";
-import BuyItems from "./pages/BuyItems";
+import WeekGroceryPricesTable from "@core/components/WeekGroceryPricesTable";
+import ProductsBuyer from "./views/ProductsBuyer";
+import { products } from "shared/mocks";
 
 export default function App() {
   return (
     <>
       <WeekGroceryPricesTable />
-      <BuyItems />
+      <ProductsBuyer products={products} />
     </>
   );
 }

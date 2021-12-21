@@ -9,7 +9,7 @@ describe("ShoppingCart", () => {
   ) => RenderResult = (overrideProps) => {
     const defaultProps = {
       productsToBuy: [],
-      handleSubmitValues: jest.fn()
+      handleBuyProducts: jest.fn()
     };
     return render(<ShoppingCart {...defaultProps} {...overrideProps} />);
   };
@@ -33,10 +33,10 @@ describe("ShoppingCart", () => {
   });
 
   it.only("should call handleSubmitValues when clicking submit button", () => {
-    const handleSubmitValues = jest.fn();
+    const handleBuyProducts = jest.fn();
     const overrideProps = {
       productsToBuy: products,
-      handleSubmitValues
+      handleBuyProducts
     };
     const component = getComponent(overrideProps);
     const milkInput = component.getByLabelText("Milk");
@@ -64,7 +64,7 @@ describe("ShoppingCart", () => {
     });
 
     expect(true).toBeTruthy();
-    expect(handleSubmitValues).toHaveBeenCalledWith({
+    expect(handleBuyProducts).toHaveBeenCalledWith({
       Milk: 4,
       Bread: 8,
       Apple: 0,
