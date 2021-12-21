@@ -37,7 +37,7 @@ export default function Table(props: ITable) {
             <tr role="row" key={`row-${idx}`}>
               {columns.map((column) => {
                 const cellValue = row[column.name];
-                return <td key={cellValue}>{cellValue}</td>;
+                return <td key={`${column.name}-${cellValue}`}>{cellValue}</td>;
               })}
             </tr>
           );

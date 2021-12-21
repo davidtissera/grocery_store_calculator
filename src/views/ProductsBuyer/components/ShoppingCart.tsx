@@ -3,7 +3,7 @@ import { IProduct } from "shared/mocks";
 
 export interface IShoppingCart {
   productsToBuy: IProduct[];
-  handleBuyProducts: (formValues: Record<string, string>) => void;
+  handleBuyProducts: (formValues: Record<IProduct["name"], number>) => void;
 }
 
 export default function ShoppingCart(props: IShoppingCart) {
@@ -15,7 +15,7 @@ export default function ShoppingCart(props: IShoppingCart) {
     const elements = ((event as unknown) as any).target.elements;
     event.preventDefault();
 
-    const formValues = Object.assign(
+    const formValues: Record<IProduct["name"], number> = Object.assign(
       {},
       ...productsToBuy.map((product) => {
         return {
