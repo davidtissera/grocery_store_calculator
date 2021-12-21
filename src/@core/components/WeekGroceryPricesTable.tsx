@@ -1,13 +1,35 @@
 import Table from "@core/components/Table";
-import { products } from "shared/mocks";
+import { IProduct, products } from "shared/mocks";
 
 export default function WeekGroceryPricesTable() {
   const columns = [
     { name: "name", header: "Item" },
     { name: "cost", header: "Unit price" },
-    { name: "discount_cost", header: "Sale price" }
+    { name: "sale_price", header: "Sale price" }
   ];
-  const rows = products;
+
+  const getSalePriceProduct = (product: IProduct) => {
+    const { amountOfProductsInDiscount, discount_cost: discountCost } = product;
+    if (amountOfProductsInDiscount == undefined || discountCost == undefined) {
+      return false;
+    }
+
+    return {
+      ...product,
+      sale_price: `${amountOfProductsInDiscount} for $${
+        discountCost * amountOfProductsInDiscount
+      }`
+    };
+  };
+
+  const rows = products.map((product) => {
+    const salePriceProduct = getSalePriceProduct(product);
+    if (!salePriceProduct) {
+      return product;
+    }
+
+    return salePriceProduct;
+  });
 
   return (
     <>
