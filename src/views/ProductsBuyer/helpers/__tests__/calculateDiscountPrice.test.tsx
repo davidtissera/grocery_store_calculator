@@ -37,7 +37,7 @@ describe("calculateDiscountPrice", () => {
           ...productWithDiscount,
           quantity: 6
         });
-        expect(price).toBe(7.5);
+        expect(price).toBe(15);
       });
     });
   });

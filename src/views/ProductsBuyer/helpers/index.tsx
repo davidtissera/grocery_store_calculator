@@ -18,5 +18,5 @@ export const calculateDiscountPrice: (product: IProductQuantity) => number = (
     return discountPrice + product.cost;
   }
 
-  return discountProportion * product?.discount_cost;
+  return product.quantity * product?.discount_cost;
 };
