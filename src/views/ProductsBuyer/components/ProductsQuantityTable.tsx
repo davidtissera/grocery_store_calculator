@@ -2,7 +2,7 @@ import Table from "@core/components/Table";
 import { IProduct } from "shared/mocks";
 import { calculateDiscountPrice } from "../helpers";
 
-export type IProductQuantity = Partial<IProduct> & {
+export type IProductQuantity = IProduct & {
   quantity: number;
   price: number;
 };
@@ -23,7 +23,7 @@ export default function ProductsQuantityTable(props: IProductQuantityTable) {
   const rows = products.map((product) => ({
     name: product.name,
     quantity: product.quantity,
-    price: calculateDiscountPrice(product, product.quantity)
+    price: calculateDiscountPrice(product)
   }));
 
   const priceWithoutDiscount = products.reduce((prev, acum) => {
@@ -34,15 +34,17 @@ export default function ProductsQuantityTable(props: IProductQuantityTable) {
     return prev + acum.price;
   }, 0);
 
-  const savedPrice = (priceWithoutDiscount - totalPrice).toFixed(2);
+  const savedPrice = priceWithoutDiscount - totalPrice;
 
   return (
     <div>
       <Table columns={columns} rows={rows} />
-      <div style={{ margin: "20px 0" }}>{`Total price: $${totalPrice}`}</div>
-      <div
-        style={{ margin: "20px 0" }}
-      >{`You saved $${savedPrice} today.`}</div>
+      <div style={{ margin: "20px 0" }}>{`Total price: $${totalPrice.toFixed(
+        2
+      )}`}</div>
+      <div style={{ margin: "20px 0" }}>{`You saved $${savedPrice.toFixed(
+        2
+      )} today.`}</div>
     </div>
   );
 }

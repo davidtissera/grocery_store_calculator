@@ -9,7 +9,10 @@ export default function WeekGroceryPricesTable() {
   ];
 
   const getSalePriceProduct = (product: IProduct) => {
-    const { amountOfProductsInDiscount, discount_cost: discountCost } = product;
+    const {
+      amount_of_products_with_discount: amountOfProductsInDiscount,
+      discount_cost: discountCost
+    } = product;
     if (amountOfProductsInDiscount == undefined || discountCost == undefined) {
       return false;
     }

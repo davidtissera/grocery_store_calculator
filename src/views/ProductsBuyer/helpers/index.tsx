@@ -1,21 +1,22 @@
-import { IProduct } from "shared/mocks";
+import { IProductQuantity } from "../components/ProductsQuantityTable";
 
-export const calculateDiscountPrice: (
-  product: IProduct,
-  quantity: number
-) => number = (product, quantity) => {
-  if (!product.amountOfProductsInDiscount || !product.discount_cost) {
-    const price = product.cost * quantity;
+export const calculateDiscountPrice: (product: IProductQuantity) => number = (
+  product
+) => {
+  if (!product.amount_of_products_with_discount || !product.discount_cost) {
+    const price = product.cost * product.quantity;
 
     return price;
   }
 
-  const amount = quantity / product?.amountOfProductsInDiscount;
-  if (amount % 1 !== 0) {
-    const discountPrice = (quantity - 1) * product?.discount_cost;
+  const discountProportion =
+    product.quantity / product.amount_of_products_with_discount;
+
+  if (discountProportion % 1 !== 0) {
+    const discountPrice = (product.quantity - 1) * product?.discount_cost;
 
     return discountPrice + product.cost;
   }
 
-  return quantity * product?.discount_cost;
+  return discountProportion * product?.discount_cost;
 };
