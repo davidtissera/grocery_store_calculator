@@ -14,10 +14,6 @@ export interface IProductQuantityTable {
 export default function ProductsQuantityTable(props: IProductQuantityTable) {
   const { products } = props;
 
-  if (products.length === 0) {
-    return null;
-  }
-
   const columns = [
     { name: "name", header: "Item" },
     { name: "quantity", header: "Quantity" },
@@ -41,13 +37,12 @@ export default function ProductsQuantityTable(props: IProductQuantityTable) {
   const savedPrice = (priceWithoutDiscount - totalPrice).toFixed(2);
 
   return (
-    <>
-      <h1>Your Shopping List</h1>
+    <div>
       <Table columns={columns} rows={rows} />
       <div style={{ margin: "20px 0" }}>{`Total price: $${totalPrice}`}</div>
       <div
         style={{ margin: "20px 0" }}
       >{`You saved $${savedPrice} today.`}</div>
-    </>
+    </div>
   );
 }

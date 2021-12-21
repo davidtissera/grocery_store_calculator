@@ -28,13 +28,22 @@ export default function ProductsBuyer(props: IProductsBuyer) {
   };
 
   return (
-    <>
-      <h1>Pick your products</h1>
-      <ShoppingCart
-        productsToBuy={products}
-        handleBuyProducts={handleBuyProducts}
-      />
-      <ProductsQuantityTable products={newProducts} />
-    </>
+    <div>
+      <div style={{ display: "flex" }}>
+        <div>
+          <h1>Pick you products</h1>
+          <ShoppingCart
+            productsToBuy={products}
+            handleBuyProducts={handleBuyProducts}
+          />
+        </div>
+        {newProducts.length > 0 && (
+          <div style={{ marginLeft: "20px" }}>
+            <h1>Your shopping list</h1>
+            <ProductsQuantityTable products={newProducts} />
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
